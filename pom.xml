@@ -6,7 +6,7 @@
 	<groupId>com.parkhomenko</groupId>
 	<artifactId>shoppingsystem</artifactId>
 	<version>0.0.1</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>shoppingsystem</name>
 	<description>Project for online shopping system</description>
