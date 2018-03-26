@@ -48,9 +48,13 @@
             <jpa:basic attribute-type="com.parkhomenko.product.MonetaryAmount" v="true" xvt="" name="price" ui="false" ft="false" id="_152154744556619">
                 <jpa:xwm/>
                 <jpa:xm/>
-                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="false"/>
             </jpa:basic>
             <jpa:basic attribute-type="boolean" v="true" xvt="" name="isAvailable" dv="true" id="_152155600589620">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="attribute" id="_1522096262526343">
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
@@ -84,6 +88,15 @@
         </jpa:nq>
         <jpa:nq e="false" name="Product.findByIsAvailable">
             <jpa:query>Select p from Product p where p.isAvailable=:isAvailable</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Product.findByAttribute">
+            <jpa:query>Select p from Product p where p.attribute=:attribute</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Product.findByMoney">
+            <jpa:query>Select p from Product p where p.money=:money</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Product.findByCurrency">
+            <jpa:query>Select p from Product p where p.currency=:currency</jpa:query>
         </jpa:nq>
     </jpa:entity>
     <jpa:entity compositePrimaryKeyClass="CustomerPK" abs="false" class="Customer" v="true" xre="false" m="false" rootElement="_15215420312591" id="_1521542230456">
@@ -341,19 +354,20 @@
         <cit>java.util.HashSet</cit>
         <cit>java.util.TreeSet</cit>
         <cit>java.util.HashMap</cit>
+        <db u="jdbc:postgresql://localhost:5432/shoppingsystem" n="admin" p="admin" d="org.postgresql.Driver"/>
     </jpa:c>
     <jpa:wsl>
         <jpa:ws n="Main" id="_15215420312602">
-            <i ref="_1521542201175" x="248" y="40"/>
-            <i ref="_1521542230456" x="467" y="14"/>
-            <i ref="_1521558394394" x="29" y="319"/>
-            <i ref="_1521556814526" x="284" y="383"/>
-            <i ref="_1521561112468" x="770" y="249"/>
-            <i ref="_1521543473474" x="15" y="86"/>
-            <i ref="_1521556973312" x="467" y="145"/>
-            <i ref="_1521542061415" x="29" y="14"/>
-            <i ref="_1521561320255" x="705" y="14"/>
-            <i ref="_1521557424864" x="698" y="427"/>
+            <i ref="_1521542201175" x="246" y="38"/>
+            <i ref="_1521542230456" x="465" y="12"/>
+            <i ref="_1521558394394" x="27" y="317"/>
+            <i ref="_1521556814526" x="282" y="381"/>
+            <i ref="_1521561112468" x="768" y="247"/>
+            <i ref="_1521543473474" x="13" y="84"/>
+            <i ref="_1521556973312" x="465" y="143"/>
+            <i ref="_1521542061415" x="27" y="12"/>
+            <i ref="_1521561320255" x="703" y="12"/>
+            <i ref="_1521557424864" x="696" y="425"/>
         </jpa:ws>
     </jpa:wsl>
 </jpa:entity-mappings>

@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.Type;
 
 /**
  * @author dmytro
@@ -49,12 +51,15 @@ public class Product {
     @Size(min = 1, max = 255)
     private String model;
 
-    @Column(nullable = false)
-    @Basic
+    @Columns(columns = {
+        @Column(name = "money", nullable = false), 
+        @Column(name = "currency", nullable = false)
+    })
+    @Type(type = "com.parkhomenko.product.MonetaryAmountCompositeUserType")
     private MonetaryAmount price;
 
     @Basic
-    private boolean isAvailable = true;
+    private boolean isAvailable;
 
     @OneToOne(targetEntity = SeoAttribute.class)
     private SeoAttribute seoAttribute;
@@ -68,6 +73,10 @@ public class Product {
 
     @OneToMany(targetEntity = ProductEAV.class, mappedBy = "product")
     private List<ProductEAV> productEAVs;
+
+    public Product() {
+        this.isAvailable = true;
+    }
 
     public Long getId() {
         return this.id;

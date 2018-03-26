@@ -3,6 +3,7 @@
  */
 package com.parkhomenko.domain;
 
+import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TRANSLATION_PRODUCT")
-public class TranslationProduct {
+public class TranslationProduct implements Serializable {
 
     @Basic
     private String name;

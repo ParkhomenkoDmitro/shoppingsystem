@@ -28,6 +28,11 @@ public final class DecimalMonetaryAmount implements MonetaryAmount, Serializable
         this.currency = currency;
     }
 
+    DecimalMonetaryAmount(BigDecimal value, Currency currency) {
+         this.value = value;
+         this.currency = currency;
+    }
+
     @Override
     public Object getValue() {
         return value;
