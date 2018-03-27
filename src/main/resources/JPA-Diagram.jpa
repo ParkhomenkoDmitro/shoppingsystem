@@ -1,8 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" ptype="MONOLITH" ppkg="com.parkhomenko.domain" epkg="domain" v="4.7" rws="_15215420312602" Pws="_15215420312602" cws="_15215420312602" persistenceUnitName="DEFAULT_PU" sm="false" xs="false" id="_15215420312591" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
-    <jpa:entity compositePrimaryKeyClass="ShopOrderPK" abs="false" class="ShopOrder" v="true" xre="false" m="false" rootElement="_15215420312591" id="_1521542061415">
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" ptype="MONOLITH" ppkg="com.parkhomenko" epkg="domain_v2" v="4.7" rws="_15215420312602" Pws="_15215420312602" cws="_15215420312602" persistenceUnitName="DEFAULT_PU" sm="false" xs="false" id="_15215420312591" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity compositePrimaryKeyClass="ShopOrderPK" abs="false" class="ShopOrder" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1521542061415">
         <jpa:ath>dmytro</jpa:ath>
         <jpa:attributes>
+            <jpa:basic attribute-type="int" v="true" xvt="" name="goodsCount" id="_152215656098749">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="com.parkhomenko.product.MonetaryAmount" v="true" xvt="" name="totalPrice" id="_152215663964250">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.time.LocalDateTime" v="true" xvt="" name="date" id="_152215711828354">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:column name="ORDER_DATE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1522156177528" connected-attribute-id="_152215629627944" v="true" xvt="" name="products" id="_152215629628045">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1521542230456" v="true" xvt="" name="customer" id="_152215595001540">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-one>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1522157102152" v="true" xvt="" name="transportOrganization" id="_152215725652756">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-one>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1522157324706" v="true" xvt="" name="paymentSystem" id="_152215737965760">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-one>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1522155639321" v="true" xvt="" name="state" id="_152215762849064">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-one>
             <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_15215420614853">
                 <jpa:xwm/>
                 <jpa:xm/>
@@ -12,9 +45,18 @@
         <jpa:nq e="false" name="ShopOrder.findAll">
             <jpa:query>Select e from ShopOrder e</jpa:query>
         </jpa:nq>
+        <jpa:nq e="false" name="ShopOrder.findByGoodsCount">
+            <jpa:query>Select s from ShopOrder s where s.goodsCount=:goodsCount</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="ShopOrder.findByTotalPrice">
+            <jpa:query>Select s from ShopOrder s where s.totalPrice=:totalPrice</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="ShopOrder.findByDate">
+            <jpa:query>Select s from ShopOrder s where s.date=:date</jpa:query>
+        </jpa:nq>
         <jpa:table name="SHOP_ORDER"/>
     </jpa:entity>
-    <jpa:entity compositePrimaryKeyClass="ProductPK" abs="false" class="Product" v="true" xre="false" m="false" rootElement="_15215420312591" id="_1521542201175">
+    <jpa:entity compositePrimaryKeyClass="ProductPK" abs="false" class="Product" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1521542201175">
         <jpa:ath>dmytro</jpa:ath>
         <jpa:attributes>
             <jpa:basic attribute-type="String" v="true" xvt="" name="name" ui="false" ft="false" id="_15215426230429">
@@ -22,8 +64,8 @@
                 <jpa:xm/>
                 <jpa:bv>
                     <jpa:nn m="Can't be null"/>
-                    <jpa:pt r="^.{1,255}$" m="Length must be from 1 to 255"/>
                     <jpa:si mi="1" ma="255" m="Length must be from 1 to 255"/>
+                    <jpa:pt r="^.{1,255}$" m="Length must be from 1 to 255"/>
                 </jpa:bv>
                 <jpa:column unique="false" nullable="false" insertable="true" updatable="true" length="255"/>
             </jpa:basic>
@@ -46,6 +88,7 @@
                 <jpa:column unique="true" nullable="false" insertable="true" updatable="false" length="255"/>
             </jpa:basic>
             <jpa:basic attribute-type="com.parkhomenko.product.MonetaryAmount" v="true" xvt="" name="price" ui="false" ft="false" id="_152154744556619">
+                <jpa:an e="true" n=" @Columns(columns = {&#xA;        @Column(name = &quot;money&quot;, nullable = false), &#xA;        @Column(name = &quot;currency&quot;, nullable = false)&#xA;    })&#xA;    @Type(type = &quot;com.parkhomenko.common.MonetaryAmountCompositeUserType&quot;)"/>
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:column unique="false" nullable="false" insertable="true" updatable="false"/>
@@ -58,12 +101,38 @@
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
-            <jpa:one-to-many own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1521543473474" v="true" name="attachments" id="_15215701104083004">
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1522146762070" v="true" xvt="" name="manufacturer" id="_1522147053905169">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1522147240565" v="true" xvt="" name="category" id="_1522148509034181">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1521543473474" v="true" xvt="" name="attachments" id="_15215701104083004">
+                <jpa:xwm/>
+                <jpa:xm/>
                 <jpa:join-column name="PRODUCT_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
             </jpa:one-to-many>
-            <jpa:one-to-many collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1521556814526" connected-attribute-id="_15215723607853777" v="true" name="productEAVs" id="_15215723607863778"/>
-            <jpa:one-to-one own="true" primaryKey="false" connected-entity-id="_1521558394394" v="true" name="seoAttribute" id="_15215707328143264"/>
-            <jpa:one-to-one primaryKey="false" connected-entity-id="_1521561320255" connected-attribute-id="_15215720915323708" v="true" name="translationProduct" id="_15215720915333709"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1521556814526" connected-attribute-id="_15215723607853777" v="true" xvt="" name="productEAVs" id="_15215723607863778">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1521542201175" fetch="LAZY" v="true" xvt="" name="products" id="_152214614035918">
+                <jpa:des>Children(modified version) products</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:join-column name="PRODUCTS_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:one-to-many>
+            <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1522155908847" v="true" xvt="" name="translations" id="_1522161187411296">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:join-column name="PRODUCT_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:one-to-many>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1521558394394" v="true" xvt="" name="seoAttribute" id="_15215707328143264">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-one>
             <jpa:id attribute-type="Long" v="true" xvt="" name="id" ui="false" ft="false" id="_15215422011765">
                 <jpa:xwm/>
                 <jpa:xm/>
@@ -99,18 +168,64 @@
             <jpa:query>Select p from Product p where p.currency=:currency</jpa:query>
         </jpa:nq>
     </jpa:entity>
-    <jpa:entity compositePrimaryKeyClass="CustomerPK" abs="false" class="Customer" v="true" xre="false" m="false" rootElement="_15215420312591" id="_1521542230456">
+    <jpa:entity compositePrimaryKeyClass="CustomerPK" abs="false" class="Customer" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1521542230456">
         <jpa:ath>dmytro</jpa:ath>
         <jpa:attributes>
-            <jpa:id attribute-type="Long" v="true" name="id" id="_15215422304577">
+            <jpa:basic attribute-type="String" v="true" xvt="" name="login" id="_1522148992952192">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="password" id="_1522149019454193">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="status" id="_1522150357239218">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="boolean" v="true" xvt="" name="isBlocked" id="_15221633850512406">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1522150119159" v="true" xvt="" name="sessions" id="_1522150286855217">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:join-column name="CUSTOMER_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:one-to-many>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1521561112468" v="true" xvt="" name="defaultLanguage" id="_1522150511716220">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-one>
+            <jpa:embedded connected-class-id="_1522149792121" v="true" xvt="" name="contact" id="_1522149867963205">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:embedded>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_15215422304577">
+                <jpa:xwm/>
+                <jpa:xm/>
                 <jpa:generated-value strategy="AUTO"/>
             </jpa:id>
         </jpa:attributes>
         <jpa:nq e="false" name="Customer.findAll">
             <jpa:query>Select e from Customer e</jpa:query>
         </jpa:nq>
+        <jpa:nq e="false" name="Customer.findByLogin">
+            <jpa:query>Select c from Customer c where c.login=:login</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Customer.findByPassword">
+            <jpa:query>Select c from Customer c where c.password=:password</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Customer.findByIpAddress">
+            <jpa:query>Select c from Customer c where c.ipAddress=:ipAddress</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Customer.findByStatus">
+            <jpa:query>Select c from Customer c where c.status=:status</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Customer.findByIsBlocked">
+            <jpa:query>Select c from Customer c where c.isBlocked=:isBlocked</jpa:query>
+        </jpa:nq>
     </jpa:entity>
-    <jpa:entity compositePrimaryKeyClass="AttachmentPK" abs="false" class="Attachment" v="true" xre="false" m="false" rootElement="_15215420312591" id="_1521543473474">
+    <jpa:entity compositePrimaryKeyClass="AttachmentPK" abs="false" class="Attachment" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1521543473474">
         <jpa:ath>dmytro</jpa:ath>
         <jpa:attributes>
             <jpa:basic fetch="EAGER" attribute-type="byte[]" v="true" xvt="" name="file" ui="false" ft="false" id="_152154354383912">
@@ -174,7 +289,7 @@
         </jpa:nq>
         <jpa:table name="ATTACHMENT"/>
     </jpa:entity>
-    <jpa:entity compositePrimaryKeyType="EMBEDDEDID" compositePrimaryKeyClass="ProductEAVPk" abs="false" class="ProductEAV" v="true" xre="false" m="false" rootElement="_15215420312591" id="_1521556814526">
+    <jpa:entity compositePrimaryKeyType="EMBEDDEDID" compositePrimaryKeyClass="ProductEAVPk" abs="false" class="ProductEAV" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1521556814526">
         <jpa:ath>dmytro</jpa:ath>
         <jpa:attributes>
             <jpa:basic attribute-type="String" v="true" xvt="" name="value" id="_152155763301132">
@@ -187,8 +302,14 @@
                 <jpa:xm/>
                 <jpa:join-column name="PRODUCT_PROPERTY_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
             </jpa:many-to-one>
-            <jpa:many-to-one primaryKey="true" maps-id="product" connected-entity-id="_1521542201175" connected-attribute-id="_15215723607863778" v="true" name="product" id="_15215723607853777"/>
-            <jpa:embedded-id v="true" name="productEAVEmbeddedId" id="_15215724064733779"/>
+            <jpa:many-to-one optional="true" primaryKey="true" maps-id="product" connected-entity-id="_1521542201175" connected-attribute-id="_15215723607863778" v="true" xvt="" name="product" id="_15215723607853777">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:embedded-id v="true" xvt="" name="productEAVEmbeddedId" id="_15215724064733779">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:embedded-id>
         </jpa:attributes>
         <jpa:nq e="false" name="ProductEAV.findAll">
             <jpa:query>Select e from ProductEAV e</jpa:query>
@@ -198,10 +319,10 @@
         </jpa:nq>
         <jpa:table name="PRODUCT_EAV"/>
     </jpa:entity>
-    <jpa:entity compositePrimaryKeyClass="ProductPropertyPK" abs="false" class="ProductProperty" v="true" xre="false" m="false" rootElement="_15215420312591" id="_1521556973312">
+    <jpa:entity compositePrimaryKeyClass="ProductPropertyPK" abs="false" class="ProductProperty" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1521556973312">
         <jpa:ath>dmytro</jpa:ath>
         <jpa:attributes>
-            <jpa:basic attribute-type="String" v="true" xvt="" name="type" ui="false" ft="false" id="_152155729165627">
+            <jpa:basic attribute-type="String" v="true" xvt="" name="valueType" ui="false" ft="false" id="_152155729165627">
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:bv>
@@ -209,40 +330,51 @@
                 </jpa:bv>
                 <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
             </jpa:basic>
-            <jpa:basic attribute-type="String" v="true" xvt="" name="validation_regexp" id="_152155764227833">
+            <jpa:basic attribute-type="String" v="true" xvt="" name="validationRegexp" id="_152155764227833">
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
-            <jpa:basic attribute-type="String" v="true" xvt="" name="validation_length_min" id="_152155784612634">
+            <jpa:basic attribute-type="String" v="true" xvt="" name="validationLengthMin" id="_152155784612634">
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
-            <jpa:basic attribute-type="String" v="true" name="validation_length_max" id="_152155789048235"/>
-            <jpa:basic attribute-type="String" v="true" name="name" id="_152155807573836"/>
-            <jpa:basic attribute-type="String" v="true" name="shortDescription" id="_152155812354637"/>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="validationLengthMax" id="_152155789048235">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_152155807573836">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="shortDescription" id="_152155812354637">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
             <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1521557424864" v="true" xvt="" name="property_static_values" id="_152155750439930">
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:join-column name="PRODUCT_PROPERTY_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
             </jpa:one-to-many>
-            <jpa:id attribute-type="Long" v="true" name="id" id="_152155697331423">
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_152155697331423">
+                <jpa:xwm/>
+                <jpa:xm/>
                 <jpa:generated-value strategy="AUTO"/>
             </jpa:id>
         </jpa:attributes>
         <jpa:nq e="false" name="ProductProperty.findAll">
             <jpa:query>Select e from ProductProperty e</jpa:query>
         </jpa:nq>
-        <jpa:nq e="false" name="ProductProperty.findByType">
-            <jpa:query>Select p from ProductProperty p where p.type=:type</jpa:query>
+        <jpa:nq e="false" name="ProductProperty.findByValueType">
+            <jpa:query>Select p from ProductProperty p where p.valueType=:valueType</jpa:query>
         </jpa:nq>
-        <jpa:nq e="false" name="ProductProperty.findByValidation_regexp">
-            <jpa:query>Select p from ProductProperty p where p.validation_regexp=:validation_regexp</jpa:query>
+        <jpa:nq e="false" name="ProductProperty.findByValidationRegexp">
+            <jpa:query>Select p from ProductProperty p where p.validationRegexp=:validationRegexp</jpa:query>
         </jpa:nq>
-        <jpa:nq e="false" name="ProductProperty.findByValidation_length_min">
-            <jpa:query>Select p from ProductProperty p where p.validation_length_min=:validation_length_min</jpa:query>
+        <jpa:nq e="false" name="ProductProperty.findByValidationLengthMin">
+            <jpa:query>Select p from ProductProperty p where p.validationLengthMin=:validationLengthMin</jpa:query>
         </jpa:nq>
-        <jpa:nq e="false" name="ProductProperty.findByValidation_length_max">
-            <jpa:query>Select p from ProductProperty p where p.validation_length_max=:validation_length_max</jpa:query>
+        <jpa:nq e="false" name="ProductProperty.findByValidationLengthMax">
+            <jpa:query>Select p from ProductProperty p where p.validationLengthMax=:validationLengthMax</jpa:query>
         </jpa:nq>
         <jpa:nq e="false" name="ProductProperty.findByName">
             <jpa:query>Select p from ProductProperty p where p.name=:name</jpa:query>
@@ -252,13 +384,18 @@
         </jpa:nq>
         <jpa:table name="PRODUCT_PROPERTY"/>
     </jpa:entity>
-    <jpa:entity compositePrimaryKeyClass="PropertyStaticValuePK" abs="false" class="PropertyStaticValue" v="true" xre="false" m="false" rootElement="_15215420312591" id="_1521557424864">
+    <jpa:entity compositePrimaryKeyClass="PropertyStaticValuePK" abs="false" class="PropertyStaticValue" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1521557424864">
+        <jpa:des>It is a dictionary</jpa:des>
         <jpa:ath>dmytro</jpa:ath>
         <jpa:attributes>
-            <jpa:basic attribute-type="String" v="true" name="value" id="_152155752689231">
+            <jpa:basic attribute-type="String" v="true" xvt="" name="value" id="_152155752689231">
+                <jpa:xwm/>
+                <jpa:xm/>
                 <jpa:column name="PROPERTY_VALUE" unique="false" nullable="true" insertable="true" updatable="true"/>
             </jpa:basic>
-            <jpa:id attribute-type="Long" v="true" name="id" id="_152155742486528">
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_152155742486528">
+                <jpa:xwm/>
+                <jpa:xm/>
                 <jpa:generated-value strategy="AUTO"/>
             </jpa:id>
         </jpa:attributes>
@@ -270,14 +407,17 @@
         </jpa:nq>
         <jpa:table name="PROPERTY_STATIC_VALUE"/>
     </jpa:entity>
-    <jpa:entity compositePrimaryKeyClass="SeoAttributePK" abs="false" class="SeoAttribute" v="true" xre="false" m="false" rootElement="_15215420312591" id="_1521558394394">
+    <jpa:entity compositePrimaryKeyClass="SeoAttributePK" abs="false" class="SeoAttribute" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1521558394394">
         <jpa:ath>dmytro</jpa:ath>
         <jpa:attributes>
             <jpa:basic attribute-type="String" v="true" xvt="" name="description" id="_152155863492240">
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
-            <jpa:basic attribute-type="String" v="true" name="keywords" id="_152155866885441"/>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="keywords" id="_152155866885441">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
             <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_152155839439538">
                 <jpa:xwm/>
                 <jpa:xm/>
@@ -295,7 +435,7 @@
         </jpa:nq>
         <jpa:table name="SEO_ATTRIBUTE"/>
     </jpa:entity>
-    <jpa:entity compositePrimaryKeyClass="LanguagePK" abs="false" class="Language" v="true" xre="false" m="false" rootElement="_15215420312591" id="_1521561112468">
+    <jpa:entity compositePrimaryKeyClass="LanguagePK" abs="false" class="Language" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1521561112468">
         <jpa:ath>dmytro</jpa:ath>
         <jpa:attributes>
             <jpa:basic attribute-type="String" v="true" xvt="" name="code" id="_152156113298746">
@@ -316,31 +456,483 @@
         </jpa:nq>
         <jpa:table name="SHOP_LANGUAGE"/>
     </jpa:entity>
-    <jpa:entity compositePrimaryKeyClass="TranslationProductPK" abs="false" class="TranslationProduct" v="true" xre="false" m="false" rootElement="_15215420312591" id="_1521561320255">
+    <jpa:entity compositePrimaryKeyClass="ManufacturerPK" abs="false" class="Manufacturer" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522146762070">
         <jpa:ath>dmytro</jpa:ath>
         <jpa:attributes>
-            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_152156142159949">
+            <jpa:basic attribute-type="String" v="true" xvt="" name="internationalName" id="_1522146779769165">
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
-            <jpa:basic attribute-type="String" v="true" xvt="" name="description" id="_152156209264550">
+            <jpa:basic attribute-type="String" v="true" xvt="" name="shortDescription" id="_1522146870183166">
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
-            <jpa:many-to-one primaryKey="false" connected-entity-id="_1521561112468" v="true" name="language" id="_15215716152383502"/>
-            <jpa:one-to-one own="true" primaryKey="true" connected-entity-id="_1521542201175" connected-attribute-id="_15215720915333709" v="true" name="product" id="_15215720915323708"/>
+            <jpa:basic attribute-type="byte[]" v="true" xvt="" name="logo" id="_1522146909462167">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:lob/>
+            </jpa:basic>
+            <jpa:basic attribute-type="int" v="true" xvt="" name="goodsCount" id="_1522146963990168">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_1522146762081163">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
         </jpa:attributes>
-        <jpa:nq e="false" name="TranslationProduct.findAll">
-            <jpa:query>Select e from TranslationProduct e</jpa:query>
+        <jpa:nq e="false" name="Manufacturer.findAll">
+            <jpa:query>Select e from Manufacturer e</jpa:query>
         </jpa:nq>
-        <jpa:nq e="false" name="TranslationProduct.findByName">
-            <jpa:query>Select t from TranslationProduct t where t.name=:name</jpa:query>
+        <jpa:nq e="false" name="Manufacturer.findByInternationalName">
+            <jpa:query>Select m from Manufacturer m where m.internationalName=:internationalName</jpa:query>
         </jpa:nq>
-        <jpa:nq e="false" name="TranslationProduct.findByDescription">
-            <jpa:query>Select t from TranslationProduct t where t.description=:description</jpa:query>
+        <jpa:nq e="false" name="Manufacturer.findByShortDescription">
+            <jpa:query>Select m from Manufacturer m where m.shortDescription=:shortDescription</jpa:query>
         </jpa:nq>
-        <jpa:table name="TRANSLATION_PRODUCT"/>
+        <jpa:nq e="false" name="Manufacturer.findByLogo">
+            <jpa:query>Select m from Manufacturer m where m.logo=:logo</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Manufacturer.findByGoodsCount">
+            <jpa:query>Select m from Manufacturer m where m.goodsCount=:goodsCount</jpa:query>
+        </jpa:nq>
     </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="CategoryPK" abs="false" class="Category" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522147240565">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_1522147267149173">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="shortDescription" id="_1522147282079174">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="byte[]" v="true" xvt="" name="image" id="_1522147304166175">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:lob/>
+            </jpa:basic>
+            <jpa:basic attribute-type="boolean" v="true" xvt="" name="isAvailable" id="_1522147418123176">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="int" v="true" xvt="" name="goodsCount" id="_1522147477974177">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="int" v="true" xvt="" name="position" id="_1522148256301179">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1522147240565" v="true" xvt="" name="category" id="_1522148358611180">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1522155908847" v="true" xvt="" name="translations" id="_1522161014112294">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:join-column name="CATEGORY_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:one-to-many>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1521558394394" v="true" xvt="" name="seoAttribute" id="_1522147582692178">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-one>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_1522147240576171">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Category.findAll">
+            <jpa:query>Select e from Category e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Category.findByName">
+            <jpa:query>Select c from Category c where c.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Category.findByShortDescription">
+            <jpa:query>Select c from Category c where c.shortDescription=:shortDescription</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Category.findByImage">
+            <jpa:query>Select c from Category c where c.image=:image</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Category.findByIsAvailable">
+            <jpa:query>Select c from Category c where c.isAvailable=:isAvailable</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Category.findByGoodsCount">
+            <jpa:query>Select c from Category c where c.goodsCount=:goodsCount</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Category.findByPosition">
+            <jpa:query>Select c from Category c where c.position=:position</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="CustomerGroupPK" abs="false" class="CustomerGroup" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522149571399">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_1522149600672196">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="shortDescription" id="_1522149618056197">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1521542230456" v="true" xvt="" name="customers" id="_1522149664816198">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:join-column name="CUSTOMERGROUP_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_1522149571415194">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="CustomerGroup.findAll">
+            <jpa:query>Select e from CustomerGroup e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="CustomerGroup.findByName">
+            <jpa:query>Select c from CustomerGroup c where c.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="CustomerGroup.findByShortDescription">
+            <jpa:query>Select c from CustomerGroup c where c.shortDescription=:shortDescription</jpa:query>
+        </jpa:nq>
+        <jpa:table name="CUSTOMER_GROUP"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="SessionPK" abs="false" class="Session" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522150119159">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="ipAddress" id="_1522150143399213">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="token" id="_1522150153065214">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="startDate" id="_1522150163543215">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="endDate" id="_1522150176387216">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_1522150119175211">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Session.findAll">
+            <jpa:query>Select e from Session e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Session.findByIpAddress">
+            <jpa:query>Select s from Session s where s.ipAddress=:ipAddress</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Session.findByToken">
+            <jpa:query>Select s from Session s where s.token=:token</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Session.findByStartDate">
+            <jpa:query>Select s from Session s where s.startDate=:startDate</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Session.findByEndDate">
+            <jpa:query>Select s from Session s where s.endDate=:endDate</jpa:query>
+        </jpa:nq>
+        <jpa:table name="SESSION_TABLE"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="StatePK" abs="false" class="State" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522155639321">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_152215751968363">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1522155908847" v="true" xvt="" name="translations" id="_152216012920182">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:join-column name="STATE_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_152215563935237">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="State.findAll">
+            <jpa:query>Select e from State e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="State.findByName">
+            <jpa:query>Select s from State s where s.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:table name="STATE_TABLE"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="WorkflowStatePK" abs="false" class="WorkflowState" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522155754222">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="workflowType" id="_152215871883873">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:column name="WORKFLOW_TYPE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1522155754222" v="true" xvt="" name="nextStates" id="_152215853426772">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:join-column name="ROOT_STATE_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:one-to-many>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1522155639321" v="true" xvt="" name="state" id="_152215801298169">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-one>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1522159015753" v="true" xvt="" name="actionButton" id="_152215909653876">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:join-column name="ACTION_BUTTON_CODE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:one-to-one>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_152215575425436">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="nextState.findAll">
+            <jpa:query>Select e from nextState e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="nextState.findByAction">
+            <jpa:query>Select workflowType from nextState workflowType where workflowType.action=:action</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="WorkflowState.findByWorkflowType">
+            <jpa:query>Select workflowType from WorkflowState workflowType where workflowType.workflowType=:workflowType</jpa:query>
+        </jpa:nq>
+        <jpa:table name="WORKFLOW_STATE"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="TranslationPK" abs="false" class="Translation" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522155908847">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" xvt="" name="screen" ui="false" ft="false" id="_152215928264978">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" xvt="" name="value" ui="false" ft="false" id="_152215933557579">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="translation_value" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1521561112468" v="true" xvt="" name="language" id="_1522160743317291">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="String" v="true" xvt="" name="code" id="_152215590887838">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Translation.findAll">
+            <jpa:query>Select e from Translation e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Translation.findByScreen">
+            <jpa:query>Select t from Translation t where t.screen=:screen</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Translation.findByValue">
+            <jpa:query>Select t from Translation t where t.value=:value</jpa:query>
+        </jpa:nq>
+        <jpa:table name="TRANSLATION_TABLE"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyType="D" compositePrimaryKeyClass="ProductInOrderPK" abs="false" class="ProductInOrder" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522156177528">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="int" v="true" xvt="" name="count" id="_152215638702247">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="com.parkhomenko.product.MonetaryAmount" v="true" xvt="" name="priceForOneGood" id="_152215667451951">
+                <jpa:an e="true" n=" @Columns(columns = {&#xA;        @Column(name = &quot;MONEY_FOR_ONE_GOOD&quot;, nullable = false), &#xA;        @Column(name = &quot;CURRENCY_FOR_ONE_GOOD&quot;, nullable = false)&#xA;    })&#xA;    @Type(type = &quot;com.parkhomenko.common.MonetaryAmountCompositeUserType&quot;)&#xA;"/>
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:column name="PRICE_FOR_ONE_GOOD" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="true" connected-entity-id="_1521542061415" connected-attribute-id="_152215629628045" v="true" xvt="" name="shopOrder" id="_152215629627944">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="true" connected-entity-id="_1521542201175" v="true" xvt="" name="product" id="_152215636173546">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:transient attribute-type="com.parkhomenko.product.MonetaryAmount" v="true" xvt="" name="totalPrice" ui="false" id="_152215770773565">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:transient>
+        </jpa:attributes>
+        <jpa:nq e="false" name="ProductInOrder.findAll">
+            <jpa:query>Select e from ProductInOrder e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="ProductInOrder.findByCount">
+            <jpa:query>Select p from ProductInOrder p where p.count=:count</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="ProductInOrder.findByTotalPrice">
+            <jpa:query>Select p from ProductInOrder p where p.totalPrice=:totalPrice</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="ProductInOrder.findByPriceForOneGood">
+            <jpa:query>Select p from ProductInOrder p where p.priceForOneGood=:priceForOneGood</jpa:query>
+        </jpa:nq>
+        <jpa:table name="PRODUCT_IN_ORDER"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="TransportOrganizationPK" abs="false" class="TransportOrganization" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522157102152">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_152215721015855">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_152215710222252">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="TransportOrganization.findAll">
+            <jpa:query>Select e from TransportOrganization e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="TransportOrganization.findByName">
+            <jpa:query>Select t from TransportOrganization t where t.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:table name="TRANSPORT_ORGANIZATION"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="PaymentSystemPK" abs="false" class="PaymentSystem" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522157324706">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_152215736193459">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_152215732478457">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="PaymentSystem.findAll">
+            <jpa:query>Select e from PaymentSystem e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="PaymentSystem.findByName">
+            <jpa:query>Select p from PaymentSystem p where p.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:table name="PAYMENT_SYSTEM"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="ActionButtonPK" abs="false" class="ActionButton" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522159015753">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="byte" v="true" xvt="" name="position" id="_152215912077877">
+                <jpa:des>Position on UI form</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1522155908847" v="true" xvt="" name="translations" id="_152216005997781">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:join-column name="ACTION_BUTTON_CODE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="String" v="true" xvt="" name="code" id="_152215901596074">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="ActionButton.findAll">
+            <jpa:query>Select e from ActionButton e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="ActionButton.findByPosition">
+            <jpa:query>Select a from ActionButton a where a.position=:position</jpa:query>
+        </jpa:nq>
+        <jpa:table name="ACTION_BUTTON"/>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="WarehousePK" abs="false" class="Warehouse" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522162477238">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:embedded connected-class-id="_1522149792121" v="true" xvt="" name="contact" id="_15221627260182209">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:embedded>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_15221624774202203">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Warehouse.findAll">
+            <jpa:query>Select e from Warehouse e</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:embeddable abs="false" class="Contact" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522149792121">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="phone" ft="false" id="_1522149828208200">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:column unique="true" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="email" ft="true" id="_1522149833196201">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:column unique="true" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="city" id="_1522149837210202">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="street" id="_1522149842422203">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="flat" id="_1522149849018204">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="fax" id="_1522149888596206">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="postalCode" id="_1522149899422207">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="entrance" id="_1522149957333208">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="attribute" id="_1522149971399209">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:embedded connected-class-id="_1522162513135" v="true" xvt="" name="geoCoordinate" id="_15221628939852210">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:embedded>
+        </jpa:attributes>
+    </jpa:embeddable>
+    <jpa:embeddable abs="false" class="GeoCoordinate" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1522162513135">
+        <jpa:ath>dmytro</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="long" v="true" xvt="" name="lat" id="_15221625627092207">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="long" v="true" xvt="" name="lng" id="_15221625736612208">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:embeddable>
     <jpa:snp loc="BEFORE_PACKAGE" e="true">/**
  * This file was generated by the Jeddict
  */</jpa:snp>
@@ -358,16 +950,29 @@
     </jpa:c>
     <jpa:wsl>
         <jpa:ws n="Main" id="_15215420312602">
-            <i ref="_1521542201175" x="246" y="38"/>
-            <i ref="_1521542230456" x="465" y="12"/>
-            <i ref="_1521558394394" x="27" y="317"/>
-            <i ref="_1521556814526" x="282" y="381"/>
-            <i ref="_1521561112468" x="768" y="247"/>
-            <i ref="_1521543473474" x="13" y="84"/>
-            <i ref="_1521556973312" x="465" y="143"/>
-            <i ref="_1521542061415" x="27" y="12"/>
-            <i ref="_1521561320255" x="703" y="12"/>
-            <i ref="_1521557424864" x="696" y="425"/>
+            <i ref="_1521556814526" x="384" y="532"/>
+            <i ref="_1522162477238" x="805" y="43"/>
+            <i ref="_1522156177528" x="-94" y="1288"/>
+            <i ref="_1521558394394" x="-94" y="397"/>
+            <i ref="_1521561112468" x="963" y="201"/>
+            <i ref="_1522155639321" x="365" y="1049"/>
+            <i ref="_1522155908847" x="757" y="1403"/>
+            <i ref="_1522157102152" x="468" y="1266"/>
+            <i ref="_1522162513135" x="851" y="604"/>
+            <i ref="_1521542201175" x="205" y="43"/>
+            <i ref="_1521542230456" x="185" y="755"/>
+            <i ref="_1522157324706" x="343" y="1418"/>
+            <i ref="_1522147240565" x="664" y="532"/>
+            <i ref="_1522155754222" x="793" y="1063"/>
+            <i ref="_1521556973312" x="494" y="43"/>
+            <i ref="_1522149792121" x="1009" y="754"/>
+            <i ref="_1522159015753" x="964" y="1233"/>
+            <i ref="_1522149571399" x="-78" y="755"/>
+            <i ref="_1521557424864" x="695" y="376"/>
+            <i ref="_1522150119159" x="685" y="856"/>
+            <i ref="_1521543473474" x="-46" y="79"/>
+            <i ref="_1522146762070" x="19" y="532"/>
+            <i ref="_1521542061415" x="-61" y="1023"/>
         </jpa:ws>
     </jpa:wsl>
 </jpa:entity-mappings>

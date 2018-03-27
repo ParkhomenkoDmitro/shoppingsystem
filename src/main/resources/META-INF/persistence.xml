@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="DEFAULT_PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.parkhomenko.domain_v2.domain.ShopOrder</class>
+    <class>com.parkhomenko.domain_v2.domain.Product</class>
+    <class>com.parkhomenko.domain_v2.domain.Customer</class>
+    <class>com.parkhomenko.domain_v2.domain.Attachment</class>
+    <class>com.parkhomenko.domain_v2.domain.ProductEAV</class>
+    <class>com.parkhomenko.domain_v2.domain.ProductProperty</class>
+    <class>com.parkhomenko.domain_v2.domain.PropertyStaticValue</class>
+    <class>com.parkhomenko.domain_v2.domain.SeoAttribute</class>
+    <class>com.parkhomenko.domain_v2.domain.Language</class>
+    <class>com.parkhomenko.domain_v2.domain.Manufacturer</class>
+    <class>com.parkhomenko.domain_v2.domain.Category</class>
+    <class>com.parkhomenko.domain_v2.domain.CustomerGroup</class>
+    <class>com.parkhomenko.domain_v2.domain.Session</class>
+    <class>com.parkhomenko.domain_v2.domain.State</class>
+    <class>com.parkhomenko.domain_v2.domain.WorkflowState</class>
+    <class>com.parkhomenko.domain_v2.domain.Translation</class>
+    <class>com.parkhomenko.domain_v2.domain.ProductInOrder</class>
+    <class>com.parkhomenko.domain_v2.domain.TransportOrganization</class>
+    <class>com.parkhomenko.domain_v2.domain.PaymentSystem</class>
+    <class>com.parkhomenko.domain_v2.domain.ActionButton</class>
+    <class>com.parkhomenko.domain_v2.domain.Warehouse</class>
+    <class>com.parkhomenko.domain_v2.ShopOrder</class>
+    <class>com.parkhomenko.domain_v2.Product</class>
+    <class>com.parkhomenko.domain_v2.Customer</class>
+    <class>com.parkhomenko.domain_v2.Attachment</class>
+    <class>com.parkhomenko.domain_v2.ProductEAV</class>
+    <class>com.parkhomenko.domain_v2.ProductProperty</class>
+    <class>com.parkhomenko.domain_v2.PropertyStaticValue</class>
+    <class>com.parkhomenko.domain_v2.SeoAttribute</class>
+    <class>com.parkhomenko.domain_v2.Language</class>
+    <class>com.parkhomenko.domain_v2.Manufacturer</class>
+    <class>com.parkhomenko.domain_v2.Category</class>
+    <class>com.parkhomenko.domain_v2.CustomerGroup</class>
+    <class>com.parkhomenko.domain_v2.Session</class>
+    <class>com.parkhomenko.domain_v2.State</class>
+    <class>com.parkhomenko.domain_v2.WorkflowState</class>
+    <class>com.parkhomenko.domain_v2.Translation</class>
+    <class>com.parkhomenko.domain_v2.ProductInOrder</class>
+    <class>com.parkhomenko.domain_v2.TransportOrganization</class>
+    <class>com.parkhomenko.domain_v2.PaymentSystem</class>
+    <class>com.parkhomenko.domain_v2.ActionButton</class>
+    <class>com.parkhomenko.domain_v2.Warehouse</class>
+    <class>com.parkhomenko.customer.Customer</class>
+    <class>com.parkhomenko.order.ActionButton</class>
+    <class>com.parkhomenko.product.Attachment</class>
+    <class>com.parkhomenko.product.Category</class>
+    <class>com.parkhomenko.customer.CustomerGroup</class>
+    <class>com.parkhomenko.product.Manufacturer</class>
+    <class>com.parkhomenko.order.PaymentSystem</class>
+    <class>com.parkhomenko.product.Product</class>
+    <class>com.parkhomenko.product.ProductEAV</class>
+    <class>com.parkhomenko.order.ProductInOrder</class>
+    <class>com.parkhomenko.product.ProductProperty</class>
+    <class>com.parkhomenko.product.PropertyStaticValue</class>
+    <class>com.parkhomenko.product.SeoAttribute</class>
+    <class>com.parkhomenko.customer.Session</class>
+    <class>com.parkhomenko.order.ShopOrder</class>
+    <class>com.parkhomenko.order.State</class>
+    <class>com.parkhomenko.order.TransportOrganization</class>
+    <class>com.parkhomenko.order.Warehouse</class>
+    <class>com.parkhomenko.order.WorkflowState</class>
+    <class>com.parkhomenko.common.Translation</class>
+    <class>com.parkhomenko.common.Language</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
+      <property name="javax.persistence.jdbc.password" value="app"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.user" value="app"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>
