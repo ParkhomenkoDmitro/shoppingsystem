@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" ptype="MONOLITH" ppkg="com.parkhomenko" epkg="domain_v2" v="4.7" rws="_15215420312602" Pws="_15215420312602" cws="_15215420312602" persistenceUnitName="DEFAULT_PU" sm="false" xs="false" id="_15215420312591" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" ptype="MONOLITH" ppkg="com.parkhomenko" epkg="domain_v2" v="4.7" rws="_15215420312602" Pws="_15215420312602" cws="_15215420312602" thm="PDarkColorScheme" persistenceUnitName="DEFAULT_PU" sm="false" xs="false" id="_15215420312591" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
     <jpa:entity compositePrimaryKeyClass="ShopOrderPK" abs="false" class="ShopOrder" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1521542061415">
         <jpa:ath>dmytro</jpa:ath>
         <jpa:attributes>
@@ -64,8 +64,8 @@
                 <jpa:xm/>
                 <jpa:bv>
                     <jpa:nn m="Can't be null"/>
-                    <jpa:si mi="1" ma="255" m="Length must be from 1 to 255"/>
                     <jpa:pt r="^.{1,255}$" m="Length must be from 1 to 255"/>
+                    <jpa:si mi="1" ma="255" m="Length must be from 1 to 255"/>
                 </jpa:bv>
                 <jpa:column unique="false" nullable="false" insertable="true" updatable="true" length="255"/>
             </jpa:basic>
@@ -950,29 +950,29 @@
     </jpa:c>
     <jpa:wsl>
         <jpa:ws n="Main" id="_15215420312602">
-            <i ref="_1521556814526" x="384" y="532"/>
-            <i ref="_1522162477238" x="805" y="43"/>
-            <i ref="_1522156177528" x="-94" y="1288"/>
-            <i ref="_1521558394394" x="-94" y="397"/>
-            <i ref="_1521561112468" x="963" y="201"/>
-            <i ref="_1522155639321" x="365" y="1049"/>
-            <i ref="_1522155908847" x="757" y="1403"/>
-            <i ref="_1522157102152" x="468" y="1266"/>
-            <i ref="_1522162513135" x="851" y="604"/>
             <i ref="_1521542201175" x="205" y="43"/>
             <i ref="_1521542230456" x="185" y="755"/>
             <i ref="_1522157324706" x="343" y="1418"/>
+            <i ref="_1521556814526" x="384" y="532"/>
             <i ref="_1522147240565" x="664" y="532"/>
             <i ref="_1522155754222" x="793" y="1063"/>
+            <i ref="_1522162477238" x="805" y="43"/>
             <i ref="_1521556973312" x="494" y="43"/>
             <i ref="_1522149792121" x="1009" y="754"/>
             <i ref="_1522159015753" x="964" y="1233"/>
+            <i ref="_1522156177528" x="-94" y="1288"/>
             <i ref="_1522149571399" x="-78" y="755"/>
             <i ref="_1521557424864" x="695" y="376"/>
             <i ref="_1522150119159" x="685" y="856"/>
+            <i ref="_1521558394394" x="-94" y="397"/>
+            <i ref="_1521561112468" x="963" y="201"/>
             <i ref="_1521543473474" x="-46" y="79"/>
             <i ref="_1522146762070" x="19" y="532"/>
+            <i ref="_1522155639321" x="365" y="1049"/>
+            <i ref="_1522155908847" x="757" y="1403"/>
             <i ref="_1521542061415" x="-61" y="1023"/>
+            <i ref="_1522157102152" x="468" y="1266"/>
+            <i ref="_1522162513135" x="851" y="604"/>
         </jpa:ws>
     </jpa:wsl>
 </jpa:entity-mappings>
