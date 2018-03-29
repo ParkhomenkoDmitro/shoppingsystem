@@ -1,0 +1,10 @@
+curl -i -H "Content-Type: application/json" -X POST -d '{
+    "login": "dima",
+    "password": "password"
+}' http://localhost:8084/app/customers/login
+
+curl -H "Content-Type: application/json" -X POST -d '{
+    "login": "dima",
+    "password": "password",
+    "phone" : "068"
+}' http://localhost:8084/app/customers/sign-up
