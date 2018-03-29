@@ -14,10 +14,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "CUSTOMER_GROUP")
 public class CustomerGroup {
@@ -35,41 +40,6 @@ public class CustomerGroup {
     @OneToMany(targetEntity = Customer.class)
     @JoinColumn(name = "CUSTOMERGROUP_ID")
     private List<Customer> customers;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getShortDescription() {
-        return this.shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-
-    public List<Customer> getCustomers() {
-        if (customers == null) {
-            customers = new ArrayList<>();
-        }
-        return this.customers;
-    }
-
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
-    }
 
     public void addCustomer(Customer customer) {
         getCustomers().add(customer);

@@ -5,12 +5,19 @@
  */
 package com.parkhomenko.customer;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 /**
  *
  * @author dmytro
  */
+
+@ToString
+@EqualsAndHashCode
 public class CustomerDto {
     public Long customerId;
     public String login;
     public String password;
+    public String phone;
 }

@@ -4,7 +4,6 @@
 package com.parkhomenko.order;
 
 import com.parkhomenko.common.Translation;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -14,10 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "ACTION_BUTTON")
 public class ActionButton {
@@ -35,33 +38,6 @@ public class ActionButton {
     @OneToMany(targetEntity = Translation.class)
     @JoinColumn(name = "ACTION_BUTTON_CODE")
     private List<Translation> translations;
-
-    public String getCode() {
-        return this.code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public byte getPosition() {
-        return this.position;
-    }
-
-    public void setPosition(byte position) {
-        this.position = position;
-    }
-
-    public List<Translation> getTranslations() {
-        if (translations == null) {
-            translations = new ArrayList<>();
-        }
-        return this.translations;
-    }
-
-    public void setTranslations(List<Translation> translations) {
-        this.translations = translations;
-    }
 
     public void addTranslation(Translation translation) {
         getTranslations().add(translation);

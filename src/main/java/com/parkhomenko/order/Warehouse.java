@@ -9,10 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 public class Warehouse {
 
@@ -22,21 +27,4 @@ public class Warehouse {
 
     @Embedded
     private Contact contact;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Contact getContact() {
-        return this.contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-
 }

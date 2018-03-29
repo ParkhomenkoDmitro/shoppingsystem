@@ -17,10 +17,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "WORKFLOW_STATE")
 public class WorkflowState {
@@ -43,49 +48,6 @@ public class WorkflowState {
     @OneToMany(targetEntity = WorkflowState.class)
     @JoinColumn(name = "ROOT_STATE_ID")
     private List<WorkflowState> nextStates;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getWorkflowType() {
-        return this.workflowType;
-    }
-
-    public void setWorkflowType(String workflowType) {
-        this.workflowType = workflowType;
-    }
-
-    public State getState() {
-        return this.state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
-    public ActionButton getActionButton() {
-        return this.actionButton;
-    }
-
-    public void setActionButton(ActionButton actionButton) {
-        this.actionButton = actionButton;
-    }
-
-    public List<WorkflowState> getNextStates() {
-        if (nextStates == null) {
-            nextStates = new ArrayList<>();
-        }
-        return this.nextStates;
-    }
-
-    public void setNextStates(List<WorkflowState> nextStates) {
-        this.nextStates = nextStates;
-    }
 
     public void addNextState(WorkflowState nextState) {
         getNextStates().add(nextState);

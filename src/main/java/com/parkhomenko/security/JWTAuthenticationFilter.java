@@ -35,7 +35,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public static final String HEADER_STRING = "Authorization";
     public static final String SIGN_UP_URL = "/customers/sign-up";
     
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
     
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;

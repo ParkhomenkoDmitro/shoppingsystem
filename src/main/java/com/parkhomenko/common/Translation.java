@@ -12,10 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "TRANSLATION_TABLE")
 public class Translation {
@@ -36,37 +40,4 @@ public class Translation {
 
     @ManyToOne(targetEntity = Language.class)
     private Language language;
-
-    public String getCode() {
-        return this.code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getScreen() {
-        return this.screen;
-    }
-
-    public void setScreen(String screen) {
-        this.screen = screen;
-    }
-
-    public String getValue() {
-        return this.value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public Language getLanguage() {
-        return this.language;
-    }
-
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
-
 }

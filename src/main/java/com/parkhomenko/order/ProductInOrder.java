@@ -13,12 +13,17 @@ import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Columns;
 import org.hibernate.annotations.Type;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "PRODUCT_IN_ORDER")
 @IdClass(ProductInOrderPK.class)
@@ -35,8 +40,8 @@ public class ProductInOrder {
     private MonetaryAmount priceForOneGood;
 
     @Id
-    @ManyToOne(targetEntity = ShopOrder.class)
-    private ShopOrder shopOrder;
+    @ManyToOne(targetEntity = Order.class)
+    private Order shopOrder;
 
     @Id
     @ManyToOne(targetEntity = Product.class)
@@ -44,45 +49,4 @@ public class ProductInOrder {
 
     @Transient
     private MonetaryAmount totalPrice;
-
-    public Integer getCount() {
-        return this.count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
-    public MonetaryAmount getPriceForOneGood() {
-        return this.priceForOneGood;
-    }
-
-    public void setPriceForOneGood(MonetaryAmount priceForOneGood) {
-        this.priceForOneGood = priceForOneGood;
-    }
-
-    public ShopOrder getShopOrder() {
-        return this.shopOrder;
-    }
-
-    public void setShopOrder(ShopOrder shopOrder) {
-        this.shopOrder = shopOrder;
-    }
-
-    public Product getProduct() {
-        return this.product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public MonetaryAmount getTotalPrice() {
-        return this.totalPrice;
-    }
-
-    public void setTotalPrice(MonetaryAmount totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
 }

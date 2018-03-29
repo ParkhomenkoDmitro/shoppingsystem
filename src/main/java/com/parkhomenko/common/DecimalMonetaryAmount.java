@@ -8,11 +8,13 @@ package com.parkhomenko.common;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Currency;
+import lombok.ToString;
 
 /**
  *
  * @author dmytro
  */
+@ToString
 public final class DecimalMonetaryAmount implements MonetaryAmount, Serializable {
 
     private final BigDecimal value;

@@ -9,10 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "TRANSPORT_ORGANIZATION")
 public class TransportOrganization {
@@ -23,21 +28,4 @@ public class TransportOrganization {
 
     @Basic
     private String name;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

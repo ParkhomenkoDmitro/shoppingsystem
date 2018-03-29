@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -26,13 +27,19 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
+    public static final String USERNAME_PARAMETER = "login";
+    public static final String LOGIN_URL = "/customers/login";
+    
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
-    public WebSecurity(UserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public WebSecurity(UserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder, RestAuthenticationEntryPoint restAuthenticationEntryPoint) {
         this.userDetailsService = userDetailsService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.restAuthenticationEntryPoint = restAuthenticationEntryPoint;
     }
+  
 
     /**
      * A method where we can define which resources are public and which are 
@@ -46,14 +53,23 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        final JWTAuthenticationFilter jwtAuthenticationFilter = 
+                new JWTAuthenticationFilter(authenticationManager());
+        jwtAuthenticationFilter.setUsernameParameter(USERNAME_PARAMETER);
+        jwtAuthenticationFilter
+                .setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(LOGIN_URL, "POST"));
+        
         http.cors()
                 .and()
                 .csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint)
+                .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+                .addFilter(jwtAuthenticationFilter)
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 // this disables session creation on Spring Security
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

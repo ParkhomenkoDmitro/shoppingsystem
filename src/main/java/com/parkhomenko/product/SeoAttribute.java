@@ -9,10 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "SEO_ATTRIBUTE")
 public class SeoAttribute {
@@ -26,29 +31,4 @@ public class SeoAttribute {
 
     @Basic
     private String keywords;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getKeywords() {
-        return this.keywords;
-    }
-
-    public void setKeywords(String keywords) {
-        this.keywords = keywords;
-    }
-
 }

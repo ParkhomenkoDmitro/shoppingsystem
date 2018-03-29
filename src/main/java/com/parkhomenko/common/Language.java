@@ -9,10 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "SHOP_LANGUAGE")
 public class Language {
@@ -23,21 +28,4 @@ public class Language {
 
     @Basic
     private String code;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return this.code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
 }

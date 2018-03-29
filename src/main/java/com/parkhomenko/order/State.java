@@ -14,10 +14,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "STATE_TABLE")
 public class State {
@@ -32,33 +37,6 @@ public class State {
     @OneToMany(targetEntity = Translation.class)
     @JoinColumn(name = "STATE_ID")
     private List<Translation> translations;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Translation> getTranslations() {
-        if (translations == null) {
-            translations = new ArrayList<>();
-        }
-        return this.translations;
-    }
-
-    public void setTranslations(List<Translation> translations) {
-        this.translations = translations;
-    }
 
     public void addTranslation(Translation translation) {
         getTranslations().add(translation);

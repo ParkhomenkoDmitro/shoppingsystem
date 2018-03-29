@@ -16,10 +16,15 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 public class Category {
 
@@ -55,89 +60,6 @@ public class Category {
     @OneToMany(targetEntity = Translation.class)
     @JoinColumn(name = "CATEGORY_ID")
     private List<Translation> translations;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getShortDescription() {
-        return this.shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-
-    public byte[] getImage() {
-        return this.image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
-    public boolean isIsAvailable() {
-        return this.isAvailable;
-    }
-
-    public void setIsAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
-    public int getGoodsCount() {
-        return this.goodsCount;
-    }
-
-    public void setGoodsCount(int goodsCount) {
-        this.goodsCount = goodsCount;
-    }
-
-    public int getPosition() {
-        return this.position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    public SeoAttribute getSeoAttribute() {
-        return this.seoAttribute;
-    }
-
-    public void setSeoAttribute(SeoAttribute seoAttribute) {
-        this.seoAttribute = seoAttribute;
-    }
-
-    public Category getCategory() {
-        return this.category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public List<Translation> getTranslations() {
-        if (translations == null) {
-            translations = new ArrayList<>();
-        }
-        return this.translations;
-    }
-
-    public void setTranslations(List<Translation> translations) {
-        this.translations = translations;
-    }
 
     public void addTranslation(Translation translation) {
         getTranslations().add(translation);

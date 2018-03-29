@@ -4,11 +4,7 @@
 package com.parkhomenko.product;
 
 import com.parkhomenko.common.Translation;
-import com.parkhomenko.product.Manufacturer;
-import com.parkhomenko.product.Category;
-import com.parkhomenko.product.Attachment;
 import com.parkhomenko.common.MonetaryAmount;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -24,12 +20,17 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Columns;
 import org.hibernate.annotations.Type;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 public class Product {
 
@@ -97,114 +98,12 @@ public class Product {
     @JoinColumn(name = "PRODUCT_ID")
     private List<Translation> translations;
 
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getShortDescription() {
-        return this.shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-
-    public String getModel() {
-        return this.model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public MonetaryAmount getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(MonetaryAmount price) {
-        this.price = price;
-    }
-
-    public boolean isIsAvailable() {
-        return this.isAvailable;
-    }
-
-    public void setIsAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
-    public String getAttribute() {
-        return this.attribute;
-    }
-
-    public void setAttribute(String attribute) {
-        this.attribute = attribute;
-    }
-
-    public SeoAttribute getSeoAttribute() {
-        return this.seoAttribute;
-    }
-
-    public void setSeoAttribute(SeoAttribute seoAttribute) {
-        this.seoAttribute = seoAttribute;
-    }
-
-    public Manufacturer getManufacturer() {
-        return this.manufacturer;
-    }
-
-    public void setManufacturer(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public Category getCategory() {
-        return this.category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public List<Attachment> getAttachments() {
-        if (attachments == null) {
-            attachments = new ArrayList<>();
-        }
-        return this.attachments;
-    }
-
-    public void setAttachments(List<Attachment> attachments) {
-        this.attachments = attachments;
-    }
-
     public void addAttachment(Attachment attachment) {
         getAttachments().add(attachment);
     }
 
     public void removeAttachment(Attachment attachment) {
         getAttachments().remove(attachment);
-    }
-
-    public List<ProductEAV> getProductEAVs() {
-        if (productEAVs == null) {
-            productEAVs = new ArrayList<>();
-        }
-        return this.productEAVs;
-    }
-
-    public void setProductEAVs(List<ProductEAV> productEAVs) {
-        this.productEAVs = productEAVs;
     }
 
     public void addProductEAV(ProductEAV productEAV) {
@@ -217,34 +116,12 @@ public class Product {
         productEAV.setProduct(null);
     }
 
-    public List<Product> getProducts() {
-        if (products == null) {
-            products = new ArrayList<>();
-        }
-        return this.products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
     public void addProduct(Product product) {
         getProducts().add(product);
     }
 
     public void removeProduct(Product product) {
         getProducts().remove(product);
-    }
-
-    public List<Translation> getTranslations() {
-        if (translations == null) {
-            translations = new ArrayList<>();
-        }
-        return this.translations;
-    }
-
-    public void setTranslations(List<Translation> translations) {
-        this.translations = translations;
     }
 
     public void addTranslation(Translation translation) {
@@ -254,5 +131,4 @@ public class Product {
     public void removeTranslation(Translation translation) {
         getTranslations().remove(translation);
     }
-
 }

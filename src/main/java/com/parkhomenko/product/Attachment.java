@@ -18,10 +18,15 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "ATTACHMENT")
 public class Attachment {
@@ -52,45 +57,4 @@ public class Attachment {
     @Basic
     @PositiveOrZero
     private byte position;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public byte[] getFile() {
-        return this.file;
-    }
-
-    public void setFile(byte[] file) {
-        this.file = file;
-    }
-
-    public FileType getType() {
-        return this.type;
-    }
-
-    public void setType(FileType type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public byte getPosition() {
-        return this.position;
-    }
-
-    public void setPosition(byte position) {
-        this.position = position;
-    }
-
 }

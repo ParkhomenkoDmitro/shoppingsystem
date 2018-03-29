@@ -12,10 +12,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "PRODUCT_EAV")
 public class ProductEAV {
@@ -35,37 +40,4 @@ public class ProductEAV {
     @MapsId("product")
     @ManyToOne(targetEntity = Product.class)
     private Product product;
-
-    public ProductEAVPk getProductEAVEmbeddedId() {
-        return this.productEAVEmbeddedId;
-    }
-
-    public void setProductEAVEmbeddedId(ProductEAVPk productEAVEmbeddedId) {
-        this.productEAVEmbeddedId = productEAVEmbeddedId;
-    }
-
-    public String getValue() {
-        return this.value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public ProductProperty getProductProperty() {
-        return this.productProperty;
-    }
-
-    public void setProductProperty(ProductProperty productProperty) {
-        this.productProperty = productProperty;
-    }
-
-    public Product getProduct() {
-        return this.product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
 }

@@ -3,15 +3,18 @@
  */
 package com.parkhomenko.common;
 
-import java.util.Optional;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+@NoArgsConstructor
+@Data
 @Embeddable
 public class Contact {
 
@@ -46,85 +49,4 @@ public class Contact {
 
     @Embedded
     private GeoCoordinate geoCoordinate;
-
-    public String getPhone() {
-        return this.phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Optional<String> getEmail() {
-        return Optional.ofNullable(this.email);
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCity() {
-        return this.city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStreet() {
-        return this.street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getFlat() {
-        return this.flat;
-    }
-
-    public void setFlat(String flat) {
-        this.flat = flat;
-    }
-
-    public String getFax() {
-        return this.fax;
-    }
-
-    public void setFax(String fax) {
-        this.fax = fax;
-    }
-
-    public String getPostalCode() {
-        return this.postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public String getEntrance() {
-        return this.entrance;
-    }
-
-    public void setEntrance(String entrance) {
-        this.entrance = entrance;
-    }
-
-    public String getAttribute() {
-        return this.attribute;
-    }
-
-    public void setAttribute(String attribute) {
-        this.attribute = attribute;
-    }
-
-    public GeoCoordinate getGeoCoordinate() {
-        return this.geoCoordinate;
-    }
-
-    public void setGeoCoordinate(GeoCoordinate geoCoordinate) {
-        this.geoCoordinate = geoCoordinate;
-    }
-
 }

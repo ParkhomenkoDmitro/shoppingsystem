@@ -9,10 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "SESSION_TABLE")
 public class Session {
@@ -32,45 +37,4 @@ public class Session {
 
     @Basic
     private String endDate;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getIpAddress() {
-        return this.ipAddress;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-    }
-
-    public String getToken() {
-        return this.token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getStartDate() {
-        return this.startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return this.endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
 }

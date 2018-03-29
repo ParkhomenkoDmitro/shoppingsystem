@@ -62,9 +62,15 @@ public class CustomerDao implements CustomerDaoInterface {
     @Override
     public CustomerDto findByLogin(String login) {
         Customer customer = customerRepo.findByLogin(login);
+
+        if (customer == null) {
+            return null; 
+        }
+
         CustomerDto dto = new CustomerDto();
         dto.customerId = customer.getId();
         dto.login = customer.getLogin();
+        dto.password = customer.getPassword();
         return dto;
     }
 

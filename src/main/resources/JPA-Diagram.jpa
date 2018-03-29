@@ -171,13 +171,15 @@
     <jpa:entity compositePrimaryKeyClass="CustomerPK" abs="false" class="Customer" v="true" jbn="false" xre="false" m="false" rootElement="_15215420312591" id="_1521542230456">
         <jpa:ath>dmytro</jpa:ath>
         <jpa:attributes>
-            <jpa:basic attribute-type="String" v="true" xvt="" name="login" id="_1522148992952192">
+            <jpa:basic attribute-type="String" v="true" xvt="" name="login" ft="false" id="_1522148992952192">
                 <jpa:xwm/>
                 <jpa:xm/>
+                <jpa:column unique="true" nullable="false" insertable="true" updatable="true"/>
             </jpa:basic>
-            <jpa:basic attribute-type="String" v="true" xvt="" name="password" id="_1522149019454193">
+            <jpa:basic attribute-type="String" v="true" xvt="" name="password" ft="false" id="_1522149019454193">
                 <jpa:xwm/>
                 <jpa:xm/>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
             </jpa:basic>
             <jpa:basic attribute-type="String" v="true" xvt="" name="status" id="_1522150357239218">
                 <jpa:xwm/>

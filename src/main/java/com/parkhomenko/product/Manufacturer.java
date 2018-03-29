@@ -9,10 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 public class Manufacturer {
 
@@ -32,45 +37,4 @@ public class Manufacturer {
 
     @Basic
     private int goodsCount;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getInternationalName() {
-        return this.internationalName;
-    }
-
-    public void setInternationalName(String internationalName) {
-        this.internationalName = internationalName;
-    }
-
-    public String getShortDescription() {
-        return this.shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-
-    public byte[] getLogo() {
-        return this.logo;
-    }
-
-    public void setLogo(byte[] logo) {
-        this.logo = logo;
-    }
-
-    public int getGoodsCount() {
-        return this.goodsCount;
-    }
-
-    public void setGoodsCount(int goodsCount) {
-        this.goodsCount = goodsCount;
-    }
-
 }

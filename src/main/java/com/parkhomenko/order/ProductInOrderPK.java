@@ -4,7 +4,9 @@
 package com.parkhomenko.order;
 
 import java.io.Serializable;
+import lombok.ToString;
 
+@ToString
 public class ProductInOrderPK implements Serializable {
 
     private Long shopOrder;
@@ -52,10 +54,4 @@ public class ProductInOrderPK implements Serializable {
         hash = 29 * hash + (this.getProduct() != null ? this.getProduct().hashCode() : 0);
         return hash;
     }
-
-    @Override
-    public String toString() {
-        return "ProductInOrderPK{" + " shopOrder=" + shopOrder + ", product=" + product + '}';
-    }
-
 }

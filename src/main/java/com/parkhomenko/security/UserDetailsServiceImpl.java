@@ -6,6 +6,7 @@
 package com.parkhomenko.security;
 
 import com.parkhomenko.customer.CustomerDao;
+import com.parkhomenko.customer.CustomerDaoInterface;
 import com.parkhomenko.customer.CustomerDto;
 import static java.util.Collections.emptyList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final CustomerDao customerDao;
+    private final CustomerDaoInterface customerDao;
 
     @Autowired
     public UserDetailsServiceImpl(CustomerDao customerDao) {

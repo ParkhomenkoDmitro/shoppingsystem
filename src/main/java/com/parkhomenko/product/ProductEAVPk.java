@@ -5,7 +5,9 @@ package com.parkhomenko.product;
 
 import java.io.Serializable;
 import javax.persistence.Embeddable;
+import lombok.ToString;
 
+@ToString
 @Embeddable
 public class ProductEAVPk implements Serializable {
 
@@ -62,10 +64,4 @@ public class ProductEAVPk implements Serializable {
         hash = 59 * hash + (this.getProduct() != null ? this.getProduct().hashCode() : 0);
         return hash;
     }
-
-    @Override
-    public String toString() {
-        return "ProductEAVPk{" + " productProperty=" + productProperty + ", product=" + product + '}';
-    }
-
 }

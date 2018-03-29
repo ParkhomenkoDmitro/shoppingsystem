@@ -15,10 +15,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "PRODUCT_PROPERTY")
 public class ProductProperty {
@@ -51,73 +56,6 @@ public class ProductProperty {
     @JoinColumn(name = "PRODUCT_PROPERTY_ID")
     private List<PropertyStaticValue> property_static_values;
 
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getValueType() {
-        return this.valueType;
-    }
-
-    public void setValueType(String valueType) {
-        this.valueType = valueType;
-    }
-
-    public String getValidationRegexp() {
-        return this.validationRegexp;
-    }
-
-    public void setValidationRegexp(String validationRegexp) {
-        this.validationRegexp = validationRegexp;
-    }
-
-    public String getValidationLengthMin() {
-        return this.validationLengthMin;
-    }
-
-    public void setValidationLengthMin(String validationLengthMin) {
-        this.validationLengthMin = validationLengthMin;
-    }
-
-    public String getValidationLengthMax() {
-        return this.validationLengthMax;
-    }
-
-    public void setValidationLengthMax(String validationLengthMax) {
-        this.validationLengthMax = validationLengthMax;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getShortDescription() {
-        return this.shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-
-    public List<PropertyStaticValue> getProperty_static_values() {
-        if (property_static_values == null) {
-            property_static_values = new ArrayList<>();
-        }
-        return this.property_static_values;
-    }
-
-    public void setProperty_static_values(List<PropertyStaticValue> property_static_values) {
-        this.property_static_values = property_static_values;
-    }
-
     public void addProperty_static_value(PropertyStaticValue property_static_value) {
         getProperty_static_values().add(property_static_value);
     }
@@ -125,5 +63,4 @@ public class ProductProperty {
     public void removeProperty_static_value(PropertyStaticValue property_static_value) {
         getProperty_static_values().remove(property_static_value);
     }
-
 }

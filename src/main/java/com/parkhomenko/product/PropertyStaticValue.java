@@ -10,12 +10,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * It is a dictionary
  *
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "PROPERTY_STATIC_VALUE")
 public class PropertyStaticValue {
@@ -27,21 +32,4 @@ public class PropertyStaticValue {
     @Column(name = "PROPERTY_VALUE")
     @Basic
     private String value;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getValue() {
-        return this.value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
 }

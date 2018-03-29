@@ -3,12 +3,9 @@
  */
 package com.parkhomenko.order;
 
-import com.parkhomenko.order.ProductInOrder;
-import com.parkhomenko.order.PaymentSystem;
 import com.parkhomenko.customer.Customer;
 import com.parkhomenko.common.MonetaryAmount;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -19,15 +16,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Columns;
 import org.hibernate.annotations.Type;
 
 /**
  * @author dmytro
  */
+
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "SHOP_ORDER")
-public class ShopOrder {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,81 +63,6 @@ public class ShopOrder {
 
     @OneToMany(targetEntity = ProductInOrder.class, mappedBy = "shopOrder")
     private List<ProductInOrder> products;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getGoodsCount() {
-        return this.goodsCount;
-    }
-
-    public void setGoodsCount(Integer goodsCount) {
-        this.goodsCount = goodsCount;
-    }
-
-    public MonetaryAmount getTotalPrice() {
-        return this.totalPrice;
-    }
-
-    public void setTotalPrice(MonetaryAmount totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public LocalDateTime getDate() {
-        return this.date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public Customer getCustomer() {
-        return this.customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public TransportOrganization getTransportOrganization() {
-        return this.transportOrganization;
-    }
-
-    public void setTransportOrganization(TransportOrganization transportOrganization) {
-        this.transportOrganization = transportOrganization;
-    }
-
-    public PaymentSystem getPaymentSystem() {
-        return this.paymentSystem;
-    }
-
-    public void setPaymentSystem(PaymentSystem paymentSystem) {
-        this.paymentSystem = paymentSystem;
-    }
-
-    public State getState() {
-        return this.state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
-    public List<ProductInOrder> getProducts() {
-        if (products == null) {
-            products = new ArrayList<>();
-        }
-        return this.products;
-    }
-
-    public void setProducts(List<ProductInOrder> products) {
-        this.products = products;
-    }
 
     public void addProduct(ProductInOrder product) {
         getProducts().add(product);
