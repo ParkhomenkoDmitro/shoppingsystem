@@ -31,24 +31,18 @@ public class CustomerDao implements CustomerDaoInterface {
     public List<CustomerDto> getCustomers(Pageable pageable) {
         Page<Customer> customers = customerRepo.findAll(pageable);
         List<CustomerDto> result = customers.stream()
-                .map(item -> {
-                    final CustomerDto dto = new CustomerDto();
-                    dto.customerId = item.getId();
-                    dto.login = item.getLogin();
-                    return dto;
-                }).collect(Collectors.toList());
+                .map(Customer::buildToDto)
+                .collect(Collectors.toList());
         return result;
     }
 
     @Override
     public CustomerDto getCustomer(long id) {
-        Optional<Customer> customer = customerRepo.findById(id);
+        Optional<Customer> customerOptional = customerRepo.findById(id);
 
-        if (customer.isPresent()) {
-            CustomerDto dto = new CustomerDto();
-            dto.customerId = customer.get().getId();
-            dto.login = customer.get().getLogin();
-            return dto;
+        if (customerOptional.isPresent()) {
+            Customer customer = customerOptional.get();
+            return customer.buildToDto();
         }
 
         return null;
@@ -64,14 +58,10 @@ public class CustomerDao implements CustomerDaoInterface {
         Customer customer = customerRepo.findByLogin(login);
 
         if (customer == null) {
-            return null; 
+            return null;
         }
 
-        CustomerDto dto = new CustomerDto();
-        dto.customerId = customer.getId();
-        dto.login = customer.getLogin();
-        dto.password = customer.getPassword();
-        return dto;
+        return customer.buildToDto();
     }
 
 }

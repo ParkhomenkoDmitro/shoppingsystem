@@ -57,11 +57,21 @@ public class Customer {
     private List<Session> sessions;
 
     public Customer(CustomerDto customerDto) {
-        this.login = customerDto.login;
-        this.password = customerDto.password;
-        this.contact = new Contact();
-        this.contact.setGeoCoordinate(new GeoCoordinate());
-        this.contact.setPhone(customerDto.phone);
+        login = customerDto.getLogin();
+        password = customerDto.getPassword();
+        contact = new Contact();
+        contact.setGeoCoordinate(new GeoCoordinate());
+        contact.setPhone(customerDto.getPhone());
+    }
+    
+    public CustomerDto buildToDto() {
+         return CustomerDto.createBuilder(
+                login,
+                password,
+                contact.getPhone())
+                .customerId(id)
+                .isBlocked(isBlocked)
+                .build();
     }
  
     public void addSession(Session session) {

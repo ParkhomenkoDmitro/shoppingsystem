@@ -37,7 +37,13 @@ public class CustomerService {
     }
     
     public void signUpByPassword(CustomerDto customerDto) {
-        customerDto.password = bCryptPasswordEncoder.encode(customerDto.password);
-        customerDaoInterface.signUpByPassword(customerDto);
+        String encodedPassword = bCryptPasswordEncoder.encode(customerDto.getPassword());
+        CustomerDto customerWithHashedPassword = CustomerDto.createBuilder(
+                customerDto.getLogin(), 
+                encodedPassword, 
+                customerDto.getPhone())
+                .build();
+        
+        customerDaoInterface.signUpByPassword(customerWithHashedPassword);
     }
 }
