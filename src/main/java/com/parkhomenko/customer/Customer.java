@@ -71,6 +71,7 @@ public class Customer {
                 contact.getPhone())
                 .customerId(id)
                 .isBlocked(isBlocked)
+                .email(contact.getEmail())
                 .build();
     }
  

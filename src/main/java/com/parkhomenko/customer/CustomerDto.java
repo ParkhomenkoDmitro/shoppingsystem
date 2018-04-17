@@ -23,6 +23,7 @@ public class CustomerDto {
     private final String login;
     private final String password;
     private final String phone;
+    private final String email;
     private final Boolean isBlocked;
 
     public static Builder createBuilder(String login, String password, String phone) {
@@ -37,6 +38,7 @@ public class CustomerDto {
         // Optional parameters - initialized to default values
         private Long customerId = -1L;
         private Boolean isBlocked = false;
+        private String email;
 
         public Builder(String login, String password, String phone) {
             this.login = login;
@@ -53,6 +55,11 @@ public class CustomerDto {
             isBlocked = val;
             return this;
         }
+        
+        public Builder email(String val) {
+            email = val;
+            return this;
+        }
 
         public CustomerDto build() {
             return new CustomerDto(this);
@@ -65,6 +72,7 @@ public class CustomerDto {
         password = builder.password;
         isBlocked = builder.isBlocked;
         phone = builder.phone;
+        email = builder.email;
     }
 
     /**
@@ -74,10 +82,11 @@ public class CustomerDto {
      * private final.
      */
     private CustomerDto() {
-        this.customerId = -1L;
-        this.login = "";
-        this.password = "";
-        this.phone = "";
-        this.isBlocked = false;
+        customerId = -1L;
+        login = "";
+        password = "";
+        phone = "";
+        email = "";
+        isBlocked = false;
     }
 }
